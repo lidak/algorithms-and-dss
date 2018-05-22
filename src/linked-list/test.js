@@ -45,4 +45,21 @@ describe('LinkedList', () => {
 
     expect(arr).to.eql([firstCellValue, secondCellValue]);
   });
+
+  it('Pop method should remove cell from the end', () => {
+    const firstValue = 5;
+    const secondValue = 10;
+    const thirdValue = 20;
+
+    list.push(firstValue);
+    list.push(secondValue);
+    list.push(thirdValue);
+
+    expect(list.tail.value).to.equal(thirdValue);
+    list.pop();
+    expect(list.tail.value).to.equal(secondValue);
+    list.pop();
+    expect(list.tail.value).to.equal(firstValue);
+    expect(list.tail).to.equal(null);
+  });
 });

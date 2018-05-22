@@ -25,7 +25,6 @@ module.exports = class LinkedList {
 
     let result = this.head;
     while(result.next !== null) {
-      console.log(result, result.next)
       result = result.next;
     }
 
@@ -36,7 +35,6 @@ module.exports = class LinkedList {
     let cell = this.head;
 
     while(cell !== null) {
-      console.log(cell, 'Ololo')
       callback(cell);
       cell = cell.next;
     }
