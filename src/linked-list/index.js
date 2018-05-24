@@ -52,11 +52,58 @@ module.exports = class LinkedList {
   }
 
   pop() {
+    let cell = this.head;
+
+    // The list is empty
+    if(cell === null) return;
+
+    // The list contains one Cell
+    if(cell.next === null) {
+      this.head = null;
+      return;
+    }
+
+    while(cell.next.next !== null) {
+      cell = cell.next;
+    }
+
+    cell.next = null;
   }
 
-  insertAfter() {
+  insertAfter(valueToInsertAfter, valueToInsert) {
+    let cellToInsertAfter = this.head;
+    const newCell = new Cell({value: valueToInsert});
+
+    while(cellToInsertAfter!== null && cellToInsertAfter.value !== valueToInsertAfter) {
+      // The end of the list is reached
+      console.log(JSON.stringify(cellToInsertAfter, null, 2));
+      cellToInsertAfter = cellToInsertAfter.next;
+    }
+
+    if(cellToInsertAfter === null) {
+      console.error(`There's no ${valueToInsert} value in the list`);
+      return false;
+    }
+
+    let intNextCell = cellToInsertAfter.next;
+
+    cellToInsertAfter.next = newCell;
+    newCell.next = intNextCell;
+    return true;
   }
 
-  removeItem() {
+  removeItem(valueToRemove) {
+    let cellToRemove = this.head;
+    let beforeToRemove = null;
+
+    while(cellToRemove.value !== valueToRemove) {
+      beforeToRemove = cellToRemove;
+      cellToRemove = cellToRemove.next;
+
+      if(cellToRemove === null) return false;
+    }
+
+    beforeToRemove.next = cellToRemove.next;
+    return true;
   }
 };
